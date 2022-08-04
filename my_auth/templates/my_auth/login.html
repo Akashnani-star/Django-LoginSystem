@@ -1,0 +1,48 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="{% static 'common.css' %}"> -->
+    <link rel="stylesheet" href="{% static 'login.css' %}">
+    <title>Login</title>
+</head>
+<body>
+    <div class="login">
+        <div>
+            <h1 style="text-align: center;margin-top: 2rem;">Login Here</h1>
+        </div>
+        <div class="wrapper">
+            {% if not request.user.is_authenticated %}
+                <form method="post" style="width: 100%;">
+                    {% csrf_token %}
+                    {{form.username}} <br>
+                    {{form.password}} <br>
+                    <div style="text-align: center;">
+                        <input class="myform-input" type="submit" value="Login">
+                    </div>
+                </form>
+            {% else %}
+                <h1>Already Login.</h1>
+                <button id="logout">Logout?</button>
+                <div style="display: none;" id="confirm-div">
+                    <form action="{% url 'my_auth.logout' %}" method="POST" class="logout-form">
+                        {% csrf_token %}
+                        <input type="submit" value="Confirm Logout?">
+                    </form>
+                </div>
+    
+            {% endif %}
+        </div>
+    </div>
+</body>
+<script>
+    document.getElementById("logout").addEventListener("click",(e)=>{
+        document.getElementById("confirm-div").style.display = "block";
+        document.getElementsByClassName("wrapper")[0].style.flexDirection = "column";
+    });
+</script>
+</html>

@@ -1,0 +1,107 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <!-- <link rel="stylesheet" href="{% static 'home.css' %}"> -->
+    <style>
+        .my-images{
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1em;
+            padding: 1em;
+        }
+        .image,.image img{
+            border-radius: 20px;
+            box-shadow: 2px 2px 2px rgba(30, 2, 2, 0.503);
+
+        }
+        body{
+            background: linear-gradient(to right bottom,white,rgb(36, 152, 214));
+        }
+
+        .logout{
+            cursor: pointer;
+            padding: 0.5rem;
+            font-size: 1.2rem;
+            margin-left: 1.5rem;
+            background-color: rgb(36, 152, 214);
+            outline: none;
+            border: none;
+            border-radius: 10px;
+            color: white;
+            border: 1px solid rgb(36, 152, 214);
+            transition: all 0.3s;
+        }
+        .logout:hover{
+            border: 1px solid rgb(36, 152, 214);
+            background-color: white;
+            color: rgb(36, 152, 214);
+        }
+        .logout-btn{
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+        }
+        .logout-form{
+            position: absolute;
+            top: -15rem;
+            width: 30%;
+            background-color: rgba(44, 44, 44, 0.765);
+            text-align: center;
+            left: 50%;
+            transform: translate(-50%);
+            padding: 1rem;
+            border-radius: 10px;
+            box-shadow: 3px 3px 3px rgb(77, 5, 5);
+            transition: all 0.4s linear;
+        }
+        .into{
+            position: absolute;
+            top: 1rem;
+            right: 2rem;
+            transition: all 0.2s linear;
+            cursor: pointer;
+            color:rgb(36, 152, 214);
+            font-size: 1.3rem;
+            font-weight: bold;
+        }
+        .into:hover{
+            transform: scale(1.3);
+        }
+    </style>
+</head>
+<body>
+
+    <h1 style="color: rgb(36, 152, 214); text-align: center ;">House Images</h1>
+
+    <form action="{% url 'my_auth.logout' %}" method="post" class="logout-form">
+        <span class="into">X</span>
+        {% csrf_token %}
+        <h3 style="color: rgb(36, 152, 214);">Confirm Logout</h3>
+        <input type="submit" value="Logout" class="logout">
+    </form>
+
+    <button class="logout logout-btn" id="lgout-btn"> Logout </button>
+
+    <div class="my-images">
+        {% for image in images %}
+            <div style="height: 300px; width: 300px;" class="image">
+                <img src="{{image}}" alt="" height="100%" width="100%" style="object-fit: cover;">
+            </div>
+        {% endfor %}
+    </div>
+    
+</body>
+<script>
+    document.getElementById("lgout-btn").addEventListener("click",(e)=>{
+       document.getElementsByClassName("logout-form")[0].style.top = "0";
+    })
+    document.getElementsByClassName("into")[0].addEventListener("click",(e)=>{
+        document.getElementsByClassName("logout-form")[0].style.top = "-15rem";
+    })
+</script>
+</html>
