@@ -16,7 +16,7 @@ steps to make this project work on your system
 - activate environment
 -- source /myenv/bin/activate
 - install requirements through requirements.txt
--- pip3 -r requirements.txt
+-- pip3 install -r requirements.txt
 - run migrate command to intialize the basic models of Django
 -- python3 manage.py migrate
 - run server
