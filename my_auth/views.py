@@ -10,19 +10,25 @@ def my_register(request):
     if form.is_valid():
         form.save()
         return redirect("my_auth.login")
-    else:
-        return render(request,"my_auth/register.html",{"form" : form})
+    return render(request,"my_auth/register.html",{"form" : form})
 
 
 def my_login(request):
-    form = CustomAuthForm(request,request.POST)
+    if request.method == "POST":
+        form = CustomAuthForm(request,request.POST)
+    else:
+        form = CustomAuthForm()
+    attempt = False
     if form.is_valid():
         user_obj = form.get_user()
         authenticate(request)
         login(request,user_obj)
         return redirect("myapp.home")
     else:
-        return render(request,"my_auth/login.html",{"form" : CustomAuthForm()})
+        if form.is_bound:
+            print("hello")
+            attempt = True
+    return render(request,"my_auth/login.html",{"form" : CustomAuthForm(),"attempt" : attempt})
 
 @login_required
 def my_logout(request):

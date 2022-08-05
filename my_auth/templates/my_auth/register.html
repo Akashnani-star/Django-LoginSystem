@@ -8,7 +8,39 @@
     <!-- <link rel="stylesheet" href="{% static 'common.css' %}"> -->
     <link rel="stylesheet" href="{% static 'register.css' %}">
     <title>Register</title>
-    
+    <style>
+        .errorlist{
+            display: none;
+        }
+        .all-errors{
+            position: absolute;
+            bottom: 1em;
+            width: 100%;
+            transition: all 0.4s;
+        }
+        .my-error{
+            background-color: red;
+            transition: all 0.4s;
+            width: 85%;
+            color: white;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin: 0 auto;
+            text-align: center;
+            padding: 0.3rem 0;
+            border-radius: 1rem;
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-top: 0.4rem;
+        }
+        .into{
+            cursor: pointer;
+        }
+        .into:hover{
+            transform: scale(1.3);
+        }
+    </style>
 </head>
 <body>
     
@@ -38,13 +70,36 @@
             {% endif %}
         </div>
     </div>
-
+    <div class="all-errors">
+        {% for error,value in form.errors.items %}
+            {% for v in value %}
+            <div class="my-error">
+                <p style="margin: 0;" style="width: fit-content;" >{{v}}</p>
+                <p class="into" onclick="myfunc(this)">X</p>
+            </div>
+            {% endfor %}
+        {% endfor %}
+    </div>
 </body>
 <script>
-    document.getElementById("logout").addEventListener("click",(e)=>{
+    document.getElementById("logout") && document.getElementById("logout").addEventListener("click",(e)=>{
         document.getElementById("confirm-div").style.display = "block";
         document.getElementsByClassName("wrapper")[0].style.flexDirection = "column";
     });
+    function myfunc(element) {
+        element.parentNode.style.opacity = "0";
+        element.parentNode.style.pointerEvents = "none";
+    }
+
+    setTimeout(() => {
+        const errorsdiv = document.getElementsByClassName("all-errors")[0]
+        try{
+            errorsdiv.style.opacity = "0";
+            errorsdiv.style.pointerEvents = "none";
+        }catch(e){
+
+        }
+    }, 3000);
 </script>
 </html>
 
