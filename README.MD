@@ -1,6 +1,8 @@
 # Django UsersLoginSystem
 ## _A Basic Project_
 
+### overview of the project
+https://www.linkedin.com/posts/akash-kola-a1a07b175_project-connections-django-activity-6961211950974345216-9f3v?utm_source=linkedin_share&utm_medium=android_app
 
 
 
