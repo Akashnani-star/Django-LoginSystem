@@ -6,8 +6,8 @@ https://www.linkedin.com/posts/akash-kola-a1a07b175_project-connections-django-a
 
 
 
-In This Project we just register and login users
-The Home Page that is <server-address>/myapp/ is protected route
+### In This Project we just register and login users
+### The Home Page that is <server-address>/myapp/ is protected route
 
 
 steps to make this project work on your system
