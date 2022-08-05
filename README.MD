@@ -22,6 +22,6 @@ steps to make this project work on your system
 - run migrate command to intialize the basic models of Django
 -- python3 manage.py migrate (ubuntu)
 - run server
--- python3 manage.pt runserver (ubuntu)
+-- python3 manage.py runserver (ubuntu)
 
 
